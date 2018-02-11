@@ -1,41 +1,20 @@
 
-CREATE DATABASE `video_blog` DEFAULT COLLATE utf8_general_ci;
-use `video_blog`;
+CREATE DATABASE `blog` DEFAULT COLLATE utf8_general_ci;
+use `blog`;
 
-CREATE TABLE `users` (
+CREATE TABLE `posts` (
   `id` int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `login` varchar(45) NOT NULL,
-  `pass` varchar(255) NOT NULL,
-  `email` varchar(45) NOT NULL
+  `title` varchar(255) NOT NULL,
+  `authors_name` varchar(255) NOT NULL,
+  `time` TIMESTAMP
+
 ); 
-CREATE TABLE `video` (
+CREATE TABLE `coments` (
   `id` int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `url` varchar(255) NOT NULL,
-   `users_id` int(10) unsigned NOT NULL,
-   FOREIGN KEY (users_id) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ;
-CREATE TABLE `tokens` (
-  `id` int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `token` varchar(255) NOT NULL,
-  `user_ip` varchar(45) NOT NULL,
-  `user_agent` varchar(255) NOT NULL,
-  `expiries` bigint(20) unsigned NOT NULL,
-  `users_id` int(10) unsigned NOT NULL,
-  FOREIGN KEY (users_id) REFERENCES `users`(`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
-
-);
-
-CREATE TABLE `roles` (
-  `id` int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL
+  `com` varchar(255) NOT NULL,
+  `post_id` int(11) NOT NULL,
+   FOREIGN KEY (post_id) REFERENCES `posts`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ;
 
-CREATE TABLE `user_roles` (
-  `users_id` int(10) unsigned NOT NULL ,
-  `roles_id` int(10) unsigned NOT NULL,
-  FOREIGN KEY (users_id) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  FOREIGN KEY (roles_id) REFERENCES `roles`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-);
 
 

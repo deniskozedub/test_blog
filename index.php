@@ -1,6 +1,6 @@
 <?php
 
-define("URLROOT","/video/");
+define("URLROOT","/blog/");
 define("INTO_DEGREE",count(explode('/',URLROOT))-1);
 define("DOCROOT",$_SERVER["DOCUMENT_ROOT"].URLROOT);
 define("APP_PATH",DOCROOT."App/");
